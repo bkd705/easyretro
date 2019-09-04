@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/team/{team}', 'TeamController@show');
+Route::post('/team', 'TeamController@store');
+
+Route::post('/team/{team}/board', 'BoardController@store');
+Route::get('/team/{team}/board', 'BoardController@index');
