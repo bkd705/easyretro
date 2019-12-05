@@ -15,4 +15,9 @@ class Board extends Model
     {
         $this->hasMany(Category::class);
     }
+
+    public function items()
+    {
+        $this->hasMany(Item::class);
+    }
 }
