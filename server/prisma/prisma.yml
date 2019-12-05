@@ -1,0 +1,11 @@
+# HTTP Endpoint
+#endpoint: ""
+endpoint: https://us1.prisma.sh/brennen-denomme-8a0eec/easyretro/dev
+
+# location of the datamodel file
+datamodel: datamodel.prisma
+
+# identifiy the language and location of the Prisma Client
+generate:
+  - generator: javascript-client
+    output: ../generated/prisma-client

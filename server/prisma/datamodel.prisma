@@ -1,0 +1,25 @@
+type Team {
+  id: ID! @id
+  name: String!
+  boards: [Board!]!
+}
+
+type Board {
+  id: ID! @id
+  team: Team!
+  items: [Item!]!
+}
+
+type Item {
+  id: ID! @id
+  board: Board!
+  text: String!
+  category: category!
+}
+
+enum category {
+  START
+  STOP
+  CONTINUE
+  ACTION
+}
