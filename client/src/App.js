@@ -1,41 +1,13 @@
 import React from 'react'
-import { useQuery } from 'urql'
-
-const boardsQuery = `
-  query {
-    boards {
-      id
-      team {
-        name
-      }
-    }
-  }
-`
+import { Route } from 'react-router-dom'
+import { Home } from './screens/Home'
+import { Team } from './screens/Team'
 
 function App() {
-  const [results] = useQuery({
-    query: boardsQuery,
-  })
-
-  console.log(results)
-
-  if (results.fetching) return <h1>Loading...</h1>
-  if (results.error) return <h1>Error: {results.error.message}</h1>
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello</h1>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        {results.data &&
-          results.data.boards.map(item => (
-            <li key={item.id}>
-              {item.id} --- {item.team.name}
-            </li>
-          ))}
-      </header>
+    <div>
+      <Route path="/" exact component={Home} />
+      <Route path="/:teamName" component={Team} />
     </div>
   )
 }

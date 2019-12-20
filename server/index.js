@@ -4,6 +4,7 @@ const { prisma } = require('./generated/prisma-client')
 // Type Definition
 const typeDefs = `
 type Query {
+  team(name: String!): Team!
   teams: [Team!]!
   boards: [Board!]!
   items: [Item!]!
@@ -45,6 +46,9 @@ type Mutation {
 // Resolvers
 const resolvers = {
   Query: {
+    team: (root, args, context, info) => {
+      return context.prisma.team({ name: args.name })
+    },
     teams: (root, args, context, info) => {
       return context.prisma.teams()
     },
@@ -106,4 +110,14 @@ const server = new GraphQLServer({
   context: { prisma },
 })
 
-server.start(() => console.log(`Server is running on http://localhost:4000`))
+const opts = {
+  port: 4000,
+  cors: {
+    credentials: true,
+    origin: ['http://localhost:3000'],
+  },
+}
+
+server.start(opts, () =>
+  console.log(`Server is running on http://localhost:4000`)
+)

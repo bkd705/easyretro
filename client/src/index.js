@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
 import { createClient, Provider, defaultExchanges } from 'urql'
+import { BrowserRouter } from 'react-router-dom'
 import { devtoolsExchange } from '@urql/devtools'
+import App from './App'
 
 import * as serviceWorker from './serviceWorker'
 
@@ -12,9 +13,11 @@ const client = createClient({
 })
 
 const Index = (
-  <Provider value={client}>
-    <App />
-  </Provider>
+  <BrowserRouter>
+    <Provider value={client}>
+      <App />
+    </Provider>
+  </BrowserRouter>
 )
 
 ReactDOM.render(Index, document.getElementById('root'))

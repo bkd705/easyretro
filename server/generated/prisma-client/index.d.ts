@@ -396,6 +396,7 @@ export interface TeamCreateInput {
 
 export type TeamWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
+  name?: Maybe<String>;
 }>;
 
 export interface ItemUpdateWithWhereUniqueWithoutBoardInput {

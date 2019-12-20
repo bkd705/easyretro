@@ -1,6 +1,6 @@
 type Team {
   id: ID! @id
-  name: String!
+  name: String! @unique
   boards: [Board!]!
 }
 

@@ -575,6 +575,7 @@ input TeamWhereInput {
 
 input TeamWhereUniqueInput {
   id: ID
+  name: String
 }
 `
       }
