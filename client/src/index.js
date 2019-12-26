@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createClient, Provider, defaultExchanges } from 'urql'
+import { createClient, Provider as UrqlProvider, defaultExchanges } from 'urql'
 import { BrowserRouter } from 'react-router-dom'
 import { devtoolsExchange } from '@urql/devtools'
+
 import App from './App'
 
 import * as serviceWorker from './serviceWorker'
@@ -14,9 +15,9 @@ const client = createClient({
 
 const Index = (
   <BrowserRouter>
-    <Provider value={client}>
+    <UrqlProvider value={client}>
       <App />
-    </Provider>
+    </UrqlProvider>
   </BrowserRouter>
 )
 

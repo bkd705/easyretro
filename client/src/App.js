@@ -1,5 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+import './styles.css'
+
 import { Home } from './screens/Home'
 import { Team } from './screens/Team'
 
