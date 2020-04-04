@@ -3,8 +3,7 @@ import gql from 'graphql-tag'
 import { useQuery } from 'urql'
 import { Heading } from '../components/Heading'
 import { Paragraph } from '../components/Paragraph'
-import { BoardColumn } from '../components/BoardColumn'
-import { Category } from '../components/Category'
+import { Board } from '../components/Board'
 
 const getTeam = gql`
   query GetTeam($name: String!) {
@@ -43,33 +42,11 @@ export const Team = ({ match: { params } }) => {
 
   const latestBoard = team.boards[team.boards.length - 1]
 
-  const itemsByCategory = latestBoard.items.reduce(
-    (acc, item) => {
-      console.log(item)
-      acc[item.category.toLowerCase()].push(item)
-
-      return acc
-    },
-    {
-      start: [],
-      stop: [],
-      continue: [],
-    }
-  )
-
   return (
     <div className="container mx-auto px-4">
       <Heading>{team.name}</Heading>
       <div className="flex">
-        <BoardColumn>
-          <Category items={itemsByCategory.start} title="Start" />
-        </BoardColumn>
-        <BoardColumn>
-          <Category items={itemsByCategory.stop} title="Stop" />
-        </BoardColumn>
-        <BoardColumn>
-          <Category items={itemsByCategory.continue} title="Continue" />
-        </BoardColumn>
+        <Board items={latestBoard.items} />
       </div>
     </div>
   )
